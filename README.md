@@ -91,7 +91,7 @@ AutoPet/
   [GitHub](https://github.com/juliegodoi) | [LinkedIn](https://www.linkedin.com/in/juliegodoi/)
 
 - **Maria Fernanda Wilhelms**  
-  [GitHub](https://github.com/Maria-Fernanda-W) | [LinkedIn](https://www.linkedin.com/in/maria-fernanda-wilhelms-640651230)
+  [GitHub](https://github.com/Maria-Fernanda-W) | [LinkedIn](https://www.linkedin.com/in/maria-fernanda-wilhelms/)
 
 - **Matheus R. Santos**  
   [GitHub](https://github.com/odevmath) | [LinkedIn](https://www.linkedin.com/in/odevmath)
