@@ -21,6 +21,29 @@
 - `/prototype/` – Arquivos de protótipo e planejamento visual;
 - `/video/` – Apresentação explicativa do sistema em formato `.mp4`.
 
+### 📁 Mapa de Diretórios do Projeto
+
+```
+AutoPet/
+├── index.html
+├── assets/
+│   ├── css/
+│   ├── img/
+│   └── fonts/
+├── src/
+│   └── scripts.js
+├── pages/
+│   ├── produtos.html
+│   ├── ticket.html
+│   ├── cpf.html
+│   ├── pagamento.html
+│   └── finalizacao.html
+├── prototype/
+│   └── AutoPet_Figma.fig
+└── video/
+    └── apresentacao.mp4
+```
+
 ## ✅ Funcionalidades
 **PROPOSTA INICIAL**
 - Interface de boas-vindas com navegação intuitiva;
