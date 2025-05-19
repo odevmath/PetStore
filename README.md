@@ -1,4 +1,4 @@
-# 🐾 AutoPet - Sistema de Autoatendimento Petshop | v1.0
+# 🐾 PetStore - Sistema de Autoatendimento Petshop | v1.0
 
 > Projeto acadêmico desenvolvido com o objetivo de propor uma solução web dinâmica, funcional e intuitiva voltada para o autoatendimento em lojas do setor pet. Inspirado na Cobasi, o sistema foca na experiência do usuário e otimização do processo de pagamento.
 
