@@ -25,7 +25,7 @@
     <main class="flex-grow-1 d-flex flex-column mt-5 mx-5">
         <div class="d-flex align-items-center justify-content-between mb-3">
             <h5 class="fw-bold">Carrinho de Compras</h5>
-            <button class="btn btn-primary fw-semibold" data-bs-toggle="modal" data-bs-target="#modalAdicionarProduto">
+            <button class="btn btn-primary fw-semibold shadow-sm" data-bs-toggle="modal" data-bs-target="#modalAdicionarProduto">
                 <i class="bi bi-plus"></i> Adicionar Produto
             </button>
         </div>
@@ -52,8 +52,8 @@
                             <td>Ração Premium para Cães Adultos (15kg)</td>
                             <td>R$ 199,90</td>
                             <td>
-                                <button class="btn btn-link text-danger text-decoration-none p-0">
-                                    <i class="bi bi-trash-fill me-1"></i> Remover
+                                <button class="btn btn-link text-danger" data-bs-toggle="tooltip" data-bs-title="Remover produto">
+                                    <i class="bi bi-trash-fill"></i>
                                 </button>
                             </td>
                         </tr>
@@ -61,8 +61,8 @@
                             <td>Areia Higiênica para Gatos (10kg)</td>
                             <td>R$ 49,90</td>
                             <td>
-                                <button class="btn btn-link text-danger text-decoration-none p-0">
-                                    <i class="bi bi-trash-fill me-1"></i> Remover
+                                <button class="btn btn-link text-danger" data-bs-toggle="tooltip" data-bs-title="Remover produto">
+                                    <i class="bi bi-trash-fill"></i>
                                 </button>
                             </td>
                         </tr>
@@ -70,8 +70,8 @@
                             <td>Coleira Antipulgas para Cães</td>
                             <td>R$ 89,90</td>
                             <td>
-                                <button class="btn btn-link text-danger text-decoration-none p-0">
-                                    <i class="bi bi-trash-fill me-1"></i> Remover
+                                <button class="btn btn-link text-danger" data-bs-toggle="tooltip" data-bs-title="Remover produto">
+                                    <i class="bi bi-trash-fill"></i>
                                 </button>
                             </td>
                         </tr>
@@ -79,8 +79,8 @@
                             <td>Brinquedo Mordedor em Borracha</td>
                             <td>R$ 24,99</td>
                             <td>
-                                <button class="btn btn-link text-danger text-decoration-none p-0">
-                                    <i class="bi bi-trash-fill me-1"></i> Remover
+                                <button class="btn btn-link text-danger" data-bs-toggle="tooltip" data-bs-title="Remover produto">
+                                    <i class="bi bi-trash-fill"></i>
                                 </button>
                             </td>
                         </tr>
@@ -94,14 +94,14 @@
                 <h5 class="mb-3 mb-md-0 fw-semibold">
                     Total do carrinho: <span class="text-primary">R$ 364,69</span>
                 </h5>
-                <a href="./estacionamento.html" class="btn btn-primary fw-semibold">Finalizar compra</a>
+                <a href="./estacionamento.html" class="btn btn-primary fw-semibold shadow-sm">Finalizar compra</a>
             </div>
         </div>
     </main>
 
     <div class="mt-3 mb-5 pb-3 mx-5 d-flex gap-3">
         <a href="../index.html" 
-            class="btn btn-light px-4 fw-semibold">
+            class="btn btn-light px-4 fw-semibold shadow-sm">
             <i class="bi bi-x-circle"></i> Cancelar Compra
         </a>
     </div>
@@ -118,8 +118,7 @@
                 <div class="modal-body">
                     <label for="codigoProduto" class="form-label text-start w-100 fw-semibold text-secondary">Digite o
                         código do produto</label>
-                    <input type="text" class="form-control text-center mb-3" value="1001" readonly tabindex="-1"
-                        style="background-color: #f8f9fa; cursor: default; box-shadow: none; outline: none; border-color: #ced4da;">
+                    <input type="text" class="form-control text-center mb-3 input-modal" value="1001" readonly tabindex="-1">
 
                     <div class="d-grid gap-2">
                         <div class="row g-2">
@@ -148,13 +147,26 @@
                 </div>
 
                 <div class="modal-footer d-flex justify-content-end">
-                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary">Adicionar</button>
+                    <button type="button" class="btn btn-light shadow-sm" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary shadow-sm" id="btnAdicionarProduto">Adicionar</button>
                 </div>
 
             </div>
         </div>
     </div>
+
+    <!-- mensagem de sucesso exibida ao adicionar produto no carrinho (por enqunato ligada ao botão de adicionar na modal pelo id no js): -->
+    <!-- Toast -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1055">
+        <div id="toastProdutoAdicionado" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    Produto adicionado ao carrinho!
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"

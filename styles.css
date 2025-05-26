@@ -5,10 +5,22 @@
 }
 
 html, body {
-      height: 100%;
-      margin: 0;      
+    height: 100%;
+    margin: 0;      
 }
 
 .btn-pagamento:hover {
     background-color: rgb(243, 243, 243) !important;
+}
+
+.btn-link:hover{
+    background-color: #e0e0e0;
+}
+
+.input-modal{
+    background-color: #f8f9fa !important;
+    cursor: default !important;
+    box-shadow: none !important;
+    outline: none !important;
+    border-color: #ced4da !important;
 }
