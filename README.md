@@ -33,11 +33,12 @@ AutoPet/
 ├── src/
 │   └── scripts.js
 ├── pages/
-│   ├── produtos.html
-│   ├── ticket.html
+│   ├── carrinho.html
+│   ├── conclusao.html
 │   ├── cpf.html
 │   ├── pagamento.html
-│   └── finalizacao.html
+│   └── processando.html
+    └── ticket.html
 ├── prototype/
 │   └── AutoPet_Figma.fig
 └── video/
