@@ -61,31 +61,29 @@
                 </div>
 
                 <div class="modal-body">
-                    <label for="codigoProduto" class="form-label text-start w-100 fw-semibold text-secondary">Digite seu CPF</label>
-                    <input type="text" class="form-control text-center mb-3" value="04132066049" readonly tabindex="-1"
-                        style="background-color: #f8f9fa; cursor: default; box-shadow: none; outline: none; border-color: #ced4da;">
+                    <label for="cpf" class="form-label text-start w-100 fw-semibold text-secondary">Digite o CPF</label>
+                    <input type="text" class="form-control text-center mb-3 input-modal" id="inputCpf" value="" readonly
+                        tabindex="-1">
 
                     <div class="d-grid gap-2">
                         <div class="row g-2">
-                            <div class="col"><button class="btn btn-outline-secondary w-100">0</button></div>
-                            <div class="col"><button class="btn btn-outline-secondary w-100">1</button></div>
-                            <div class="col"><button class="btn btn-outline-secondary w-100">2</button></div>
+                            <div class="col"><button class="btn btn-outline-secondary btn-numero w-100" data-numero="7">7</button></div>
+                            <div class="col"><button class="btn btn-outline-secondary btn-numero w-100" data-numero="8">8</button></div>
+                            <div class="col"><button class="btn btn-outline-secondary btn-numero w-100" data-numero="9">9</button></div>
                         </div>
                         <div class="row g-2">
-                            <div class="col"><button class="btn btn-outline-secondary w-100">3</button></div>
-                            <div class="col"><button class="btn btn-outline-secondary w-100">4</button></div>
-                            <div class="col"><button class="btn btn-outline-secondary w-100">5</button></div>
+                            <div class="col"><button class="btn btn-outline-secondary btn-numero w-100" data-numero="4">4</button></div>
+                            <div class="col"><button class="btn btn-outline-secondary btn-numero w-100" data-numero="5">5</button></div>
+                            <div class="col"><button class="btn btn-outline-secondary btn-numero w-100" data-numero="6">6</button></div>
                         </div>
                         <div class="row g-2">
-                            <div class="col"><button class="btn btn-outline-secondary w-100">6</button></div>
-                            <div class="col"><button class="btn btn-outline-secondary w-100">7</button></div>
-                            <div class="col"><button class="btn btn-outline-secondary w-100">8</button></div>
+                            <div class="col"><button class="btn btn-outline-secondary btn-numero w-100" data-numero="1">1</button></div>
+                            <div class="col"><button class="btn btn-outline-secondary btn-numero w-100" data-numero="2">2</button></div>
+                            <div class="col"><button class="btn btn-outline-secondary btn-numero w-100" data-numero="3">3</button></div>
                         </div>
                         <div class="row g-2">
-                            <div class="col-4"><button class="btn btn-outline-secondary w-100">9</button></div>
-                            <div class="col-8"><button class="btn btn-outline-secondary w-100">
-                                    <i class="bi bi-backspace"></i>
-                                </button></div>
+                            <div class="col-4"><button class="btn btn-outline-secondary btn-numero w-100" data-numero="0">0</button></div>
+                            <div class="col-8"><button id="btnBackspace" class="btn btn-outline-secondary w-100"><i class="bi bi-backspace"></i></button></div>
                         </div>
 
                     </div>

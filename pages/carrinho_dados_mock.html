@@ -23,7 +23,7 @@
     </nav>
 
     <main class="flex-grow-1 d-flex flex-column mt-5 mx-5">
-
+        
         <div class="d-flex align-items-center justify-content-between mb-3">
             <h5 class="fw-bold">Carrinho de Compras</h5>
             <button class="btn btn-primary fw-semibold shadow-sm" data-bs-toggle="modal"
@@ -41,48 +41,76 @@
         <!-- fim carrinho vazio -->
 
         <!-- carrinho com produtos -->
-        <div id="carrinhoComProduto" class="d-none">
-            <div class="card border border-light-subtle shadow-sm p-3 mb-3">
-                <div class="table-responsive">
-                    <table class="table table-borderless align-middle">
-                        <thead class="table-light">
-                            <tr>
-                                <th>Produto</th>
-                                <th>Preço</th>
-                                <th>Ação</th>
-                            </tr>
-                        </thead>
-                        <tbody id="listaCarrinho">
-                            <!-- os produtos são inseridos pelo JS
-                                <td>${produto.nome}</td>
-                                <td>R$ ${produto.preco.toFixed(2).replace('.', ',')}</td>
-                                <td>
-                                <button class="btn btn-link text-danger btn-remover" data-id="${produto.id}" data-bs-toggle="modal"
+        <div id="carrinhoComProduto" class="card border border-light-subtle shadow-sm p-3 mb-3">
+            <div class="table-responsive">
+                <table class="table table-borderless align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Produto</th>
+                            <th>Preço</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Ração Premium para Cães Adultos (15kg)</td>
+                            <td>R$ 199,90</td>
+                            <td>
+                                <button class="btn btn-link text-danger btn-remover" data-bs-toggle="modal"
                                     data-bs-target="#modalConfirmarRemocao" title="Remover produto">
                                     <i class="bi bi-trash-fill"></i>
                                 </button>
-                                </td> 
-                            -->
-                        </tbody>
-                    </table>
-                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Areia Higiênica para Gatos (10kg)</td>
+                            <td>R$ 49,90</td>
+                            <td>
+                                <button class="btn btn-link text-danger btn-remover" data-bs-toggle="modal"
+                                    data-bs-target="#modalConfirmarRemocao" title="Remover produto">
+                                    <i class="bi bi-trash-fill"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Coleira Antipulgas para Cães</td>
+                            <td>R$ 89,90</td>
+                            <td>
+                                <button class="btn btn-link text-danger btn-remover" data-bs-toggle="modal"
+                                    data-bs-target="#modalConfirmarRemocao" title="Remover produto">
+                                    <i class="bi bi-trash-fill"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Brinquedo Mordedor em Borracha</td>
+                            <td>R$ 24,99</td>
+                            <td>
+                                <button class="btn btn-link text-danger btn-remover" data-bs-toggle="modal"
+                                    data-bs-target="#modalConfirmarRemocao" title="Remover produto">
+                                    <i class="bi bi-trash-fill"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                    </tbody>
+                </table>
             </div>
+        </div>
 
-            <div class="card border border-light-subtle shadow-sm px-4 py-3 mb-3">
-                <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
-                    <h5 class="mb-md-0 fw-semibold">
-                        Total do Carrinho: <span id="valorTotal" class="text-primary"></span>
-                    </h5>
-                    <a href="ticket.html" class="btn btn-primary fw-semibold shadow-sm">Finalizar Compra</a>
-                </div>
+        <div class="card border border-light-subtle shadow-sm px-4 py-3 mb-3">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+                <h5 class="mb-md-0 fw-semibold">
+                    Total do Carrinho: <span id="valorTotal" class="text-primary">R$ 364,69</span>
+                </h5>
+                <a href="ticket.html" class="btn btn-primary fw-semibold shadow-sm">Finalizar Compra</a>
             </div>
         </div>
         <!-- fim carrinho com produtos -->
     </main>
 
     <div class="mb-5 pb-3 mx-5 d-flex gap-3">
-        <button class="btn btn-light px-4 fw-semibold shadow-sm" data-bs-toggle="modal"
-            data-bs-target="#modalCancelarCompra">
+        <button class="btn btn-light px-4 fw-semibold shadow-sm" data-bs-toggle="modal" data-bs-target="#modalCancelarCompra">
             <i class="bi bi-x-circle"></i> Cancelar Compra
         </button>
     </div>
@@ -99,39 +127,28 @@
                 <div class="modal-body">
                     <label for="codigoProduto" class="form-label text-start w-100 fw-semibold text-secondary">Digite o
                         código do produto</label>
-                    <input type="text" class="form-control text-center mb-3 input-modal" id="inputCodigoProduto"
-                        value="" readonly tabindex="-1">
+                    <input type="text" class="form-control text-center mb-3 input-modal" id="inputCodigoProduto" value="" readonly
+                        tabindex="-1">
 
                     <div class="d-grid gap-2">
                         <div class="row g-2">
-                            <div class="col"><button class="btn btn-outline-secondary btn-numero w-100"
-                                    data-numero="7">7</button></div>
-                            <div class="col"><button class="btn btn-outline-secondary btn-numero w-100"
-                                    data-numero="8">8</button></div>
-                            <div class="col"><button class="btn btn-outline-secondary btn-numero w-100"
-                                    data-numero="9">9</button></div>
+                            <div class="col"><button class="btn btn-outline-secondary btn-numero w-100" data-numero="7">7</button></div>
+                            <div class="col"><button class="btn btn-outline-secondary btn-numero w-100" data-numero="8">8</button></div>
+                            <div class="col"><button class="btn btn-outline-secondary btn-numero w-100" data-numero="9">9</button></div>
                         </div>
                         <div class="row g-2">
-                            <div class="col"><button class="btn btn-outline-secondary btn-numero w-100"
-                                    data-numero="4">4</button></div>
-                            <div class="col"><button class="btn btn-outline-secondary btn-numero w-100"
-                                    data-numero="5">5</button></div>
-                            <div class="col"><button class="btn btn-outline-secondary btn-numero w-100"
-                                    data-numero="6">6</button></div>
+                            <div class="col"><button class="btn btn-outline-secondary btn-numero w-100" data-numero="4">4</button></div>
+                            <div class="col"><button class="btn btn-outline-secondary btn-numero w-100" data-numero="5">5</button></div>
+                            <div class="col"><button class="btn btn-outline-secondary btn-numero w-100" data-numero="6">6</button></div>
                         </div>
                         <div class="row g-2">
-                            <div class="col"><button class="btn btn-outline-secondary btn-numero w-100"
-                                    data-numero="1">1</button></div>
-                            <div class="col"><button class="btn btn-outline-secondary btn-numero w-100"
-                                    data-numero="2">2</button></div>
-                            <div class="col"><button class="btn btn-outline-secondary btn-numero w-100"
-                                    data-numero="3">3</button></div>
+                            <div class="col"><button class="btn btn-outline-secondary btn-numero w-100" data-numero="1">1</button></div>
+                            <div class="col"><button class="btn btn-outline-secondary btn-numero w-100" data-numero="2">2</button></div>
+                            <div class="col"><button class="btn btn-outline-secondary btn-numero w-100" data-numero="3">3</button></div>
                         </div>
                         <div class="row g-2">
-                            <div class="col-4"><button class="btn btn-outline-secondary btn-numero w-100"
-                                    data-numero="0">0</button></div>
-                            <div class="col-8"><button id="btnBackspace" class="btn btn-outline-secondary w-100"><i
-                                        class="bi bi-backspace"></i></button></div>
+                            <div class="col-4"><button class="btn btn-outline-secondary btn-numero w-100" data-numero="0">0</button></div>
+                            <div class="col-8"><button id="btnBackspace" class="btn btn-outline-secondary w-100"><i class="bi bi-backspace"></i></button></div>
                         </div>
 
                     </div>
@@ -161,8 +178,7 @@
                 </div>
                 <div class="modal-footer border-0 d-flex justify-content-center gap-3">
                     <button type="button" class="btn btn-secondary shadow-sm" data-bs-dismiss="modal">Não</button>
-                    <button type="button" class="btn btn-primary shadow-sm" id="btnConfirmarRemocao">Sim,
-                        Remover</button>
+                    <button type="button" class="btn btn-primary shadow-sm" id="btnConfirmarRemocao">Sim, Remover</button>
                 </div>
             </div>
         </div>
@@ -170,8 +186,7 @@
     <!-- Fim Modal de confirmar remoção de produto -->
 
     <!-- Modal de confirmação de cancelamento -->
-    <div class="modal fade" id="modalCancelarCompra" tabindex="-1" aria-hidden="true" data-bs-backdrop="static"
-        data-bs-keyboard="false">
+    <div class="modal fade" id="modalCancelarCompra" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content text-center p-4">
                 <div class="modal-body">
@@ -183,8 +198,7 @@
                 </div>
                 <div class="modal-footer border-0 d-flex justify-content-center gap-3">
                     <button type="button" class="btn btn-secondary shadow-sm" data-bs-dismiss="modal">Não</button>
-                    <button type="button" class="btn btn-primary shadow-sm" id="btnConfirmarCancelamento">Sim,
-                        cancelar</button>
+                    <button type="button" class="btn btn-primary shadow-sm" id="btnConfirmarCancelamento">Sim, cancelar</button>
                 </div>
             </div>
         </div>
@@ -192,8 +206,7 @@
     <!-- Fim Modal de confirmação de cancelamento -->
 
     <!-- Tela de carregamento ao cancelar compra -->
-    <div id="overlayCancelamento"
-        class="position-fixed top-0 start-0 w-100 h-100 bg-dark bg-opacity-75 d-none z-1055 d-flex align-items-center justify-content-center flex-column text-white">
+    <div id="overlayCancelamento" class="position-fixed top-0 start-0 w-100 h-100 bg-dark bg-opacity-75 d-none z-1055 d-flex align-items-center justify-content-center flex-column text-white">
         <div class="spinner-border text-primary mb-3" role="status">
             <span class="visually-hidden">Cancelando...</span>
         </div>
@@ -225,8 +238,7 @@
     </div>
 
     <!-- Tela de carregamento ao cancelar compra -->
-    <div id="overlayCancelamento"
-        class="position-fixed top-0 start-0 w-100 h-100 bg-dark bg-opacity-75 d-none z-1055 d-flex align-items-center justify-content-center flex-column text-white">
+    <div id="overlayCancelamento" class="position-fixed top-0 start-0 w-100 h-100 bg-dark bg-opacity-75 d-none z-1055 d-flex align-items-center justify-content-center flex-column text-white">
         <div class="spinner-border text-primary mb-3" role="status">
             <span class="visually-hidden">Cancelando...</span>
         </div>
