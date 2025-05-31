@@ -32,15 +32,11 @@
             </button>
         </div>
 
-        <!-- carrinho vazio -->
         <div id="carrinhoVazio" class="flex-grow-1 d-flex flex-column align-items-center justify-content-center">
             <i class="bi bi-cart" style="font-size: 4rem; color: #6c757d;"></i>
             <h3 class="fw-semibold text-muted">Seu carrinho está vazio</h3>
             <p class="text-muted">Adicione produtos para continuar</p>
         </div>
-        <!-- fim carrinho vazio -->
-
-        <!-- carrinho com produtos -->
         <div id="carrinhoComProduto" class="d-none">
             <div class="card border border-light-subtle shadow-sm p-3 mb-3">
                 <div class="table-responsive">
@@ -53,17 +49,7 @@
                             </tr>
                         </thead>
                         <tbody id="listaCarrinho">
-                            <!-- os produtos são inseridos pelo JS
-                                <td>${produto.nome}</td>
-                                <td>R$ ${produto.preco.toFixed(2).replace('.', ',')}</td>
-                                <td>
-                                <button class="btn btn-link text-danger btn-remover" data-id="${produto.id}" data-bs-toggle="modal"
-                                    data-bs-target="#modalConfirmarRemocao" title="Remover produto">
-                                    <i class="bi bi-trash-fill"></i>
-                                </button>
-                                </td> 
-                            -->
-                        </tbody>
+                            </tbody>
                     </table>
                 </div>
             </div>
@@ -77,8 +63,7 @@
                 </div>
             </div>
         </div>
-        <!-- fim carrinho com produtos -->
-    </main>
+        </main>
 
     <div class="mb-5 pb-3 mx-5 d-flex gap-3">
         <button class="btn btn-light px-4 fw-semibold shadow-sm" data-bs-toggle="modal"
@@ -87,7 +72,6 @@
         </button>
     </div>
 
-    <!-- Modal de adicionar produto -->
     <div class="modal fade" id="modalAdicionarProduto" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -100,8 +84,7 @@
                     <label for="codigoProduto" class="form-label text-start w-100 fw-semibold text-secondary">Digite o
                         código do produto</label>
                     <input type="text" class="form-control text-center mb-3 input-modal" id="inputCodigoProduto"
-                        value="" readonly tabindex="-1">
-
+                        value="" tabindex="-1">
                     <div class="d-grid gap-2">
                         <div class="row g-2">
                             <div class="col"><button class="btn btn-outline-secondary btn-numero w-100"
@@ -145,9 +128,6 @@
             </div>
         </div>
     </div>
-    <!-- Fim Modal de adicionar produto -->
-
-    <!-- Modal de confirmar remoção de produto -->
     <div class="modal fade" id="modalConfirmarRemocao" tabindex="-1" aria-hidden="true" data-bs-backdrop="static"
         data-bs-keyboard="false">
         <div class="modal-dialog modal-dialog-centered">
@@ -167,9 +147,6 @@
             </div>
         </div>
     </div>
-    <!-- Fim Modal de confirmar remoção de produto -->
-
-    <!-- Modal de confirmação de cancelamento -->
     <div class="modal fade" id="modalCancelarCompra" tabindex="-1" aria-hidden="true" data-bs-backdrop="static"
         data-bs-keyboard="false">
         <div class="modal-dialog modal-dialog-centered">
@@ -189,9 +166,6 @@
             </div>
         </div>
     </div>
-    <!-- Fim Modal de confirmação de cancelamento -->
-
-    <!-- Tela de carregamento ao cancelar compra -->
     <div id="overlayCancelamento"
         class="position-fixed top-0 start-0 w-100 h-100 bg-dark bg-opacity-75 d-none z-1055 d-flex align-items-center justify-content-center flex-column text-white">
         <div class="spinner-border text-primary mb-3" role="status">
@@ -200,7 +174,6 @@
         <p class="text-white fw-semibold">Cancelando compra...</p>
     </div>
 
-    <!-- Toast de sucesso exibida ao adicionar produto no carrinho (por enqunato ligada ao botão de adicionar na modal pelo id no js): -->
     <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1055">
         <div id="toastProdutoAdicionado" class="toast align-items-center text-white bg-success border-0" role="alert"
             aria-live="assertive" aria-atomic="true">
@@ -212,7 +185,6 @@
         </div>
     </div>
 
-    <!-- Toast de sucesso ao remover produto -->
     <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1055">
         <div id="toastProdutoRemovido" class="toast align-items-center text-white bg-success border-0" role="alert"
             aria-live="assertive" aria-atomic="true">
@@ -224,13 +196,15 @@
         </div>
     </div>
 
-    <!-- Tela de carregamento ao cancelar compra -->
-    <div id="overlayCancelamento"
-        class="position-fixed top-0 start-0 w-100 h-100 bg-dark bg-opacity-75 d-none z-1055 d-flex align-items-center justify-content-center flex-column text-white">
-        <div class="spinner-border text-primary mb-3" role="status">
-            <span class="visually-hidden">Cancelando...</span>
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1055">
+        <div id="toastCompraCancelada" class="toast align-items-center text-white bg-success border-0" role="alert"
+            aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    Compra cancelada. Volte sempre!
+                </div>
+            </div>
         </div>
-        <p class="text-white fw-semibold">Cancelando compra...</p>
     </div>
 
 
