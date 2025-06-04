@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     localStorage.removeItem('isIsento');
     localStorage.setItem('valorTotal', valorTotalCarrinho.toFixed(2));
     btnPosuiTicket.addEventListener('click', function () {
-        if(valorTotalCarrinho <= 60) {
+        if(valorTotalCarrinho >= 60) {
             possuiTicket.classList.add("d-none");
             possuiComValor.classList.add("d-none");
             possuiGratuito.classList.remove("d-none");
