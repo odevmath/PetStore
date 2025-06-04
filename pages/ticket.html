@@ -37,11 +37,11 @@
 
                                 <h3 class="fw-bold text-dark mb-5">Você possui ticket de estacionamento?</h3>
 
-                                <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+                                <div id="possuiTicket" class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
                                     <a href="pagamento.html" class="btn btn-light px-4 py-2 fw-semibold shadow-sm">
                                         Não tenho ticket
                                     </a>
-                                    <button type="button" class="btn btn-primary px-4 py-2 fw-semibold shadow-sm">
+                                    <button id="btnPosuiTicket" type="button" class="btn btn-primary px-4 py-2 fw-semibold shadow-sm">
                                         Sim, tenho ticket
                                     </button>
                                 </div>
@@ -49,7 +49,7 @@
 
 
                             <!-- informações ticket é gratuito -->
-                            <!-- <div id="ticketGratuito">
+                            <div id="ticketGratuito" class="d-none">
                                 <h3 class="fw-bold text-dark mb-5">Ticket de estacionamento</h3>
 
                                 <div class="row justify-content-center mb-4">
@@ -64,18 +64,18 @@
                                 <a href="pagamento.html" class="btn btn-primary px-4 py-2 fw-semibold shadow-sm">
                                     Ir para o pagamento
                                 </a>
-                            </div> -->
+                            </div>
                             <!-- fim informações ticket é gratuit  -->
 
                             <!-- informações com valor do ticket  -->
-                            <!-- <div id="ticketComValor">
+                            <div id="ticketComValor" class="d-none">
                                 <h3 class="fw-bold text-dark mb-5">Ticket de estacionamento</h3>
 
                                 <div class="row justify-content-center mb-4">
                                     <div class="col-10">
-                                        <div class="alert alert-danger" role="alert">
+                                        <div class="alert alert-warning" role="alert">
                                             <h6 class="alert-heading">Valor de R$ 10,00 adicionado</h6>
-                                            <p class="m-0">Valor total da compra é de R$ 59,90</p>
+                                            <p class="m-0">Valor total da compra é de <span id="valorTotal"></span></p>
                                         </div>
                                     </div>
                                 </div>
@@ -83,7 +83,7 @@
                                 <a href="pagamento.html" class="btn btn-primary px-4 py-2 fw-semibold shadow-sm">
                                     Ir para o pagamento
                                 </a>
-                            </div> -->
+                            </div>
                             <!-- fim informações com valor do ticket  -->
 
                         </div>
@@ -97,6 +97,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
         crossorigin="anonymous"></script>
+    <script src="../scripts_pages/ticket.js"></script>
     <script src="../script.js"></script>
 </body>
 

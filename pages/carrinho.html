@@ -22,7 +22,7 @@
         </div>
     </nav>
 
-    <main class="flex-grow-1 d-flex flex-column mt-5 mx-5">
+    <main class="flex-grow-1 d-flex flex-column mt-4 mx-5">
 
         <div class="d-flex align-items-center justify-content-between mb-3">
             <h5 class="fw-bold">Carrinho de Compras</h5>
@@ -37,6 +37,7 @@
             <h3 class="fw-semibold text-muted">Seu carrinho está vazio</h3>
             <p class="text-muted">Adicione produtos para continuar</p>
         </div>
+
         <div id="carrinhoComProduto" class="d-none">
             <div class="card border border-light-subtle shadow-sm p-3 mb-3">
                 <div class="table-responsive">
@@ -49,7 +50,8 @@
                             </tr>
                         </thead>
                         <tbody id="listaCarrinho">
-                            </tbody>
+                            <!-- os produtos são inseridos pelo JS  -->
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -57,13 +59,13 @@
             <div class="card border border-light-subtle shadow-sm px-4 py-3 mb-3">
                 <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
                     <h5 class="mb-md-0 fw-semibold">
-                        Total do Carrinho: <span id="valorTotal" class="text-primary"></span>
+                        Total do Carrinho: <span id="valorTotalCarrinho" class="text-primary"></span>
                     </h5>
                     <a href="ticket.html" class="btn btn-primary fw-semibold shadow-sm">Finalizar Compra</a>
                 </div>
             </div>
         </div>
-        </main>
+    </main>
 
     <div class="mb-5 pb-3 mx-5 d-flex gap-3">
         <button class="btn btn-light px-4 fw-semibold shadow-sm" data-bs-toggle="modal"
@@ -211,6 +213,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
         crossorigin="anonymous"></script>
+    <script src="../scripts_pages/carrinho.js"></script>
     <script src="../script.js"></script>
 </body>
 

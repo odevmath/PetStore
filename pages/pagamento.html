@@ -34,29 +34,32 @@
                         <h4 class="fw-bold text-dark mb-4">Resumo da compra</h4>
                         <div class="d-flex justify-content-between mb-3">
                             <span class="text-dark">Valor:</span>
-                            <span class="fw-semibold text-dark">R$ 364,69</span>
+                            <span id="valorTotalCarrinho" class="fw-semibold text-dark"></span>
                         </div>
                         <div class="d-flex justify-content-between mb-3">
                             <span class="text-dark">Ticket:</span>
                             <div class="text-end">
-                                <div class="fw-semibold text-dark">R$ 0,00</div>
-                                <small class="text-success">(isento)</small>
+                                <div id="valorTicket" class="fw-semibold text-dark"></div>
+                                <span id="isento"><small class="text-success">(isento)</small></span>
+                                <span id="semTicket"><small>(sem ticket)</small></span>
+
                             </div>
                         </div>
                         <hr class="my-3">
                         <div class="d-flex justify-content-between">
                             <span class="fw-bold text-dark">Total a pagar:</span>
-                            <span class="fw-bold text-dark fs-5">R$ 364,69</span>
+                            <span id="valorTotal" class="fw-bold text-dark fs-5"></span>
                         </div>
                     </div>
                 </div>
             </div>
+            
             <!-- Opções de Pagamento -->
             <div class="col-lg-8 mb-4">
                 <div class="row g-3">
                     <!-- Crédito -->
                     <div class="col-6">
-                        <a href="processando.html"
+                        <a href="cpf.html" id="credito"
                             class="btn btn-outline-light shadow-sm border border-light-subtle rounded-3 w-100 h-100 p-5 text-start bg-white btn-pagamento">
                             <div class="d-flex align-items-center">
                                 <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3"
@@ -69,7 +72,7 @@
                     </div>
                     <!-- Débito -->
                     <div class="col-6">
-                        <a href="processando.html"
+                        <a href="cpf.html" id="debito"
                             class="btn btn-outline-light shadow-sm border border-light-subtle rounded-3 w-100 h-100 p-5 text-start bg-white btn-pagamento">
                             <div class="d-flex align-items-center">
                                 <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3"
@@ -82,7 +85,7 @@
                     </div>
                     <!-- Pix -->
                     <div class="col-6">
-                        <a href="processando.html"
+                        <a href="cpf.html" id="pix"
                             class="btn btn-outline-light shadow-sm border border-light-subtle rounded-3 w-100 h-100 p-5 text-start bg-white btn-pagamento">
                             <div class="d-flex align-items-center">
                                 <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3"
@@ -95,39 +98,34 @@
                     </div>
                     <!-- Voucher -->
                     <div class="col-6">
-                        <a href="processando.html"
+                        <a href="cpf.html" id="voucher"
                             class="btn btn-outline-light shadow-sm border border-light-subtle rounded-3 w-100 h-100 p-5 text-start bg-white btn-pagamento">
 
-                                <div class="d-flex align-items-center">
-                                    <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3"
-                                        style="width: 50px; height: 50px;">
-                                        <i class="bi bi-gift text-primary fs-4"></i>
-                                    </div>
-                                    <h5 class="fw-bold text-dark mb-0">Voucher</h5>
+                            <div class="d-flex align-items-center">
+                                <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3"
+                                    style="width: 50px; height: 50px;">
+                                    <i class="bi bi-gift text-primary fs-4"></i>
                                 </div>
+                                <h5 class="fw-bold text-dark mb-0">Voucher</h5>
+                            </div>
                         </a>
                     </div>
                 </div>
             </div>
 
         </div>
+
     </main>
 
     <div class="d-flex justify-content-between align-items-center mt-3 mb-5 pb-3 mx-5 flex-wrap">
-       <!--  <div class="d-flex flex-wrap gap-2 order-2 order-md-1"> -->
-            <a href="carrinho.html" class="btn btn-light px-4 fw-semibold shadow-sm">
-                <i class="bi-arrow-left-circle"></i> Voltar para carrinho
-            </a>
-            
-        <!-- </div> -->
-       <!--  <a href="./processando.html"
-            class="btn btn-primary fw-semibold shadow mt-3 mt-md-0 order-1 order-md-2 ms-auto mb-3 mb-md-0">
-            Finalizar compra
-        </a> -->
+        <a href="carrinho.html" class="btn btn-light px-4 fw-semibold shadow-sm">
+            <i class="bi-arrow-left-circle"></i> Voltar para carrinho
+        </a>
+
         <button class="btn btn-light px-4 fw-semibold shadow-sm" data-bs-toggle="modal"
-                data-bs-target="#modalCancelarCompra">
-                <i class="bi bi-x-circle"></i> Cancelar Compra
-            </button>
+            data-bs-target="#modalCancelarCompra">
+            <i class="bi bi-x-circle"></i> Cancelar Compra
+        </button>
     </div>
 
     <!-- Modal de confirmação de cancelamento -->
@@ -163,6 +161,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
         crossorigin="anonymous"></script>
+    <script src="../scripts_pages/pagamento.js"></script>
     <script src="../script.js"></script>
 </body>
 
