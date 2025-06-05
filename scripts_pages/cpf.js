@@ -10,30 +10,36 @@ document.addEventListener("DOMContentLoaded", function () {
         inputCpf.focus();
     });
 
-    if (tecladoVirtualContainer) {
-        tecladoVirtualContainer.addEventListener('click', function (event) {
-            console.log("clicou")
+    if (modalAdicionarCpf && inputCpf) {
 
-            const targetButton = event.target.closest('button');
-            if (!targetButton) return;
+        if (tecladoVirtualContainer) {
+            tecladoVirtualContainer.addEventListener('click', function (event) {
+               const targetButton = event.target.closest('button');
+               if (!targetButton) return;
 
-            if (targetButton.classList.contains('btn-numero')) {
-                const numero = targetButton.getAttribute("data-numero");
-                if (inputCpf.value.length < 11) {
+                if (targetButton.classList.contains('btn-numero') && inputCpf.value.length < 11) {
+                    const numero = targetButton.getAttribute("data-numero");
+                    
                     inputCpf.value += numero;
-                } else if (inputCpf.value.length == 11) {
-                    btnAdicionarNoModal.classList.remove('disabled')
+
+                    if(inputCpf.value.length == 11) btnAdicionarNoModal.classList.remove('disabled')
+                        
+
+                } else if (targetButton.id === 'btnBackspace') {
+                    inputCpf.value = inputCpf.value.slice(0, -1);
+                    btnAdicionarNoModal.classList.add('disabled')
                 }
-            } else if (targetButton.id === 'btnBackspace') {
-                inputCpf.value = inputCpf.value.slice(0, -1);
-            }
+            });
+        }
+
+        if (btnAdicionarNoModal) {
+            btnAdicionarNoModal.addEventListener('click', function (event) {
+                window.location.href = "processando.html";
+            });
+        }
+
+        modalAdicionarCpf.addEventListener('shown.bs.modal', function () {
+            inputCpf.value = "";
         });
     }
-
-    // Listener para o botão "Adicionar" DENTRO DO MODAL
-    btnAdicionarNoModal.addEventListener('click', function (event) {
-        window.location.href = "processando.html";
-    });
-
-
 });
