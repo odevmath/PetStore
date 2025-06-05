@@ -19,9 +19,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (targetButton.classList.contains('btn-numero')) {
                 const numero = targetButton.getAttribute("data-numero");
-                if (inputCpf.value.length < 9) {
+                if (inputCpf.value.length < 11) {
                     inputCpf.value += numero;
-                } else if (inputCpf.value.length == 9){
+                } else if (inputCpf.value.length == 11) {
                     btnAdicionarNoModal.classList.remove('disabled')
                 }
             } else if (targetButton.id === 'btnBackspace') {
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Listener para o botão "Adicionar" DENTRO DO MODAL
-    btnAdicionarNoModal.addEventListener('click', function(event){
+    btnAdicionarNoModal.addEventListener('click', function (event) {
         window.location.href = "processando.html";
     });
 

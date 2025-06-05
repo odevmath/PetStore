@@ -16,7 +16,7 @@ let ticketUsado = false;
 
 // Rota de teste
 app.get('/', (req, res) => {
-    res.send('Servidor AutoPet ativo!');
+    res.send('Servidor PetStore ativo!');
 });
 
 // Inicia o servidor
@@ -48,7 +48,7 @@ app.delete('/carrinho/:indice', (req, res) => { // <-- CORREÇÃO AQUI: adiciona
 
     // Verifica se o índice é válido
     if (isNaN(indice) || indice < 0 || indice >= carrinho.length) {
-        return res.status(404).json({ erro: 'Produto não encontrado no carrinho ou índice inválido.'});
+        return res.status(404).json({ erro: 'Produto não encontrado no carrinho ou índice inválido.' });
     }
 
     carrinho.splice(indice, 1); // Remove o produto do carrinho a partir do índice especificado
