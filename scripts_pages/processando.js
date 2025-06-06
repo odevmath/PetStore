@@ -1,13 +1,26 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    /* Valores de Local Storage */
-    const valorTotal = localStorage.getItem('valorTotal');
-    const formaPagamento = localStorage.getItem('formaPagamento');
+    // ======================================================================================
+    // Constantes e Elementos do DOM
+    // ======================================================================================
+    const valorTotal = document.getElementById('valorTotal');
+    const formaPagamento = document.getElementById('formaPagamento');
 
-    /* Adiciona os valores na tela */
-    document.getElementById('valorTotal').innerHTML += valorTotal.replace('.',',');
-    document.getElementById('formaPagamento').innerHTML += formaPagamento;
+    // ======================================================================================
+    //  Recuperação de dados do localStorage
+    // ======================================================================================
+    const localValorTotal = localStorage.getItem('valorTotal');
+    const localFormaPagamento = localStorage.getItem('formaPagamento');
 
+    // ======================================================================================
+    //  Atualização de valores da tela
+    // ======================================================================================
+    valorTotal.innerHTML += localValorTotal.replace('.',',');
+    formaPagamento.innerHTML += localFormaPagamento;
+
+    // ======================================================================================
+    //  Navegação para próxima tela
+    // ======================================================================================
     setTimeout(() => {
         window.location.href = "conclusao.html";
     }, 3000);

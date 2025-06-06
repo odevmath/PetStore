@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 .then(data => console.log(data.mensagem))
                 .catch(err => console.error('Erro ao limpar carrinho ao cancelar:', err));
 
-
+            //Navegação para o início da aplicação
             setTimeout(() => {
                 window.location.href = "/index.html?compraCancelada=true";
             }, 2000);
