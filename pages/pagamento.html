@@ -27,35 +27,9 @@
             <h5 class="fw-bold">Pagamento</h5>
         </div>
         <div class="row">
-            <!-- Resumo da Compra -->
-            <div class="col-lg-4">
-                <div class="card shadow-sm border border-light-subtle rounded-3 bg-white">
-                    <div class="card-body px-4 py-5">
-                        <h4 class="fw-bold text-dark mb-4">Resumo da compra</h4>
-                        <div class="d-flex justify-content-between mb-3">
-                            <span class="text-dark">Valor:</span>
-                            <span id="valorTotalCarrinho" class="fw-semibold text-dark"></span>
-                        </div>
-                        <div class="d-flex justify-content-between mb-3">
-                            <span class="text-dark">Ticket:</span>
-                            <div class="text-end">
-                                <div id="valorTicket" class="fw-semibold text-dark"></div>
-                                <span id="isento"><small class="text-success">(isento)</small></span>
-                                <span id="semTicket"><small>(sem ticket)</small></span>
-
-                            </div>
-                        </div>
-                        <hr class="my-3">
-                        <div class="d-flex justify-content-between">
-                            <span class="fw-bold text-dark">Total a pagar:</span>
-                            <span id="valorTotal" class="fw-bold text-dark fs-5"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
             <!-- Opções de Pagamento -->
             <div class="col-lg-8 mb-4">
+                <p class="text-dark">Selecione o método de pagamento:</p>
                 <div class="row g-3">
                     <!-- Crédito -->
                     <div class="col-6">
@@ -113,20 +87,46 @@
                 </div>
             </div>
 
+            <!-- Resumo da Compra -->
+            <div class="col-lg-4">
+                <div class="card shadow-sm border border-light-subtle rounded-3 bg-white">
+                    <div class="card-body px-4 py-5">
+                        <h4 class="fw-bold text-dark mb-4">Resumo da compra</h4>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-dark">Valor:</span>
+                            <span id="valorTotalCarrinho" class="fw-semibold text-dark"></span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-dark">Ticket:</span>
+                            <div class="text-end">
+                                <div id="valorTicket" class="fw-semibold text-dark"></div>
+                                <span id="isento"><small class="text-success">(isento)</small></span>
+                                <span id="semTicket"><small>(sem ticket)</small></span>
+
+                            </div>
+                        </div>
+                        <hr class="my-3">
+                        <div class="d-flex justify-content-between">
+                            <span class="fw-bold text-dark">Total a pagar:</span>
+                            <span id="valorTotal" class="fw-bold text-dark fs-5"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </main>
 
-    <div class="d-flex justify-content-between align-items-center mt-3 mb-5 pb-3 mx-5 flex-wrap">
+    <div class="d-flex align-items-center mt-3 mb-5 pb-3 mx-5 flex-wrap gap-3">
         <a href="carrinho.html" class="btn btn-light px-4 fw-semibold shadow-sm">
             <i class="bi-arrow-left-circle"></i> Voltar para carrinho
         </a>
-
         <button class="btn btn-light px-4 fw-semibold shadow-sm" data-bs-toggle="modal"
             data-bs-target="#modalCancelarCompra">
             <i class="bi bi-x-circle"></i> Cancelar Compra
         </button>
     </div>
+
 
     <!-- Modal de confirmação de cancelamento -->
     <div class="modal fade" id="modalCancelarCompra" tabindex="-1" aria-hidden="true" data-bs-backdrop="static"

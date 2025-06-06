@@ -4,6 +4,20 @@
 
 ---
 
+
+## 📑 Sumário
+
+- [🌟 Visão Geral](#-visão-geral)
+- [📁 Estrutura do Projeto](#-estrutura-do-projeto)
+- [✅ Funcionalidades Implementadas](#-funcionalidades-implementadas)
+- [🛠️ Tecnologias Utilizadas](#️-tecnologias-utilizadas)
+- [🚀 Como Usar o Sistema](#-como-usar-o-sistema)
+- [📋 Requisitos](#-requisitos)
+- [👨‍💻 Autores](#-autores)
+- [📄 Licença](#-licença)
+
+---
+
 ## 🌟 Visão Geral
 
 O PETSTORE oferece uma experiência de compra intuitiva, desde a seleção de produtos até a finalização do pedido. O projeto demonstra a integração entre um frontend dinâmico (HTML, CSS, JavaScript puro) e um backend robusto (Node.js com Express) para simular um fluxo de compra completo, incluindo gerenciamento de produtos e carrinho.
