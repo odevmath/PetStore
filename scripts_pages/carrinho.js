@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+    const pgCarrinho = document.getElementById("pg_carrinho");
     const modalAdicionarProdutoEl = document.getElementById('modalAdicionarProduto');
     const inputCodigoProduto = document.getElementById("inputCodigoProduto"); // Agora global
     const tecladoVirtualContainer = modalAdicionarProdutoEl ? modalAdicionarProdutoEl.querySelector('.modal-body .d-grid.gap-2') : null;
@@ -25,13 +26,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let toastErro;
     if (toastErroEl) {
-    toastErro = new bootstrap.Toast(toastErroEl, { delay: 3000 });
+        toastErro = new bootstrap.Toast(toastErroEl, { delay: 3000 });
     }
 
     // ====================================================================================================================
     //                                                 Funções Principais
     // ====================================================================================================================
-    
+
     // Carrega e exibe os produtos no carrinho
     // Esta função será chamada CONDICIONALMENTE
     function carregarCarrinho() {
@@ -79,6 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         tbody.appendChild(tr);
 
                         total += produto.preco;
+                        localStorage.setItem('valorTotalCarrinho', total.toFixed(2));
                     });
 
                     // Após preencher tudo, rola automaticamente para o final da tabela
@@ -97,24 +99,22 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function mostrarToastErro(mensagem) {
-    if (!toastErro || !toastErroMsg) {
-        alert(mensagem); // fallback para alert se toast não existir
-        return;
-    }
-    
-    toastErroMsg.textContent = mensagem;
-    toastErro.show();
+        if (!toastErro || !toastErroMsg) {
+            alert(mensagem); // fallback para alert se toast não existir
+            return;
+        }
+        toastErroMsg.textContent = mensagem;
+        toastErro.show();
     }
 
     // Adiciona um produto ao carrinho
-    function adicionarProduto() {
-        const codigoDigitado = inputCodigoProduto ? inputCodigoProduto.value.trim() : '';
+    function adicionarProduto(codigoProduto) {
+        const codigoDigitado = codigoProduto ? codigoProduto.value.trim() : '';
 
         if (!codigoDigitado) {
             mostrarToastErro('Por favor, digite o código do produto.');
             return;
         }
-
 
         fetch('http://localhost:3000/produtos')
             .then(res => {
@@ -124,7 +124,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 return res.json();
             })
             .then(produtos => {
-                // CORREÇÃO: Usar 'p.codigo' pois seu JSON usa "codigo" e não "Número"
                 const produto = produtos.find(p => p.codigo === codigoDigitado);
 
                 if (!produto) {
@@ -140,31 +139,31 @@ document.addEventListener("DOMContentLoaded", function () {
                         preco: parseFloat(produto.Valor) // Mapeia 'Valor' do JSON para 'preco' e converte para número
                     })
                 })
-                .then(res => {
-                    if (!res.ok) {
-                        throw new Error(`HTTP error! status: ${res.status}`);
-                    }
-                    return res.json();
-                })
-                .then(data => {
-                    if (data?.mensagem) {
-                        const modalInstance = bootstrap.Modal.getInstance(modalAdicionarProdutoEl);
-                        if (modalInstance) {
-                            modalInstance.hide();
-                            inputCodigoProduto.value = ""; // Limpa o campo após adicionar
+                    .then(res => {
+                        if (!res.ok) {
+                            throw new Error(`HTTP error! status: ${res.status}`);
                         }
-                        if (toastAdicionado) {
-                            toastAdicionado.show();
+                        return res.json();
+                    })
+                    .then(data => {
+                        if (data?.mensagem) {
+                            const modalInstance = bootstrap.Modal.getInstance(modalAdicionarProdutoEl);
+                            if (modalInstance) {
+                                modalInstance.hide();
+                                inputCodigoProduto.value = ""; // Limpa o campo após adicionar
+                            }
+                            if (toastAdicionado) {
+                                toastAdicionado.show();
+                            }
+                            carregarCarrinho(); // Recarrega o carrinho
                         }
-                        carregarCarrinho(); // Recarrega o carrinho
-                    }
-                });
+                    });
             })
             .catch(err => {
                 console.error('Erro ao adicionar produto:', err);
                 alert('Erro ao comunicar com o servidor ou produto não encontrado. Verifique o console.');
             });
-    } 
+    }
 
     // Implementa a lógica de exclusão de produto do carrinho
     function excluirProduto(id) {
@@ -195,65 +194,88 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // --- LÓGICA CONDICIONAL PARA O CARRINHO ---
     // SOMENTE se os elementos do carrinho existirem na página atual, carregue o carrinho e adicione listeners específicos.
-    const listaCarrinhoBody = document.getElementById('listaCarrinho'); // Elemento que só existe no carrinho.html
-    const carrinhoVazioSection = document.getElementById("carrinhoVazio"); // Outro elemento que só existe no carrinho.html
 
-        carregarCarrinho(); // Chama a função para carregar o carrinho
+    if (pgCarrinho) {
+       const inputCodigoBarras = document.getElementById("inputCodigoBarras");
+        inputCodigoBarras.focus(); //foco automático no input
 
-        // Adiciona listener para os botões de remover produtos (usando delegação de eventos na tbody)
-        if (modalConfirmarRemocaoEl) { // Garante que o modal de remoção exista
-            listaCarrinhoBody.addEventListener('click', function(event) {
-                const removeButton = event.target.closest('.btn-remover');
-                if (removeButton) {
-                    const productId = removeButton.getAttribute('data-id');
-                    modalConfirmarRemocaoEl.setAttribute('data-product-id-to-remove', productId);
+        pgCarrinho.addEventListener('click', () => {
+            inputCodigoBarras.focus();
+        }); //garante que vai ficar com o foco
+
+        inputCodigoBarras.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                const codigo = inputCodigoBarras.value.trim();
+                if (codigo !== '') {
+                    console.log('Código lido:', codigo);
+                    adicionarProduto(inputCodigoBarras);
+                    
+                }
+                inputCodigoBarras.value = ''; // limpa o campo
+            }
+        });
+    }
+
+
+    const listaCarrinhoBody = document.getElementById('listaCarrinho'); 
+    const carrinhoVazioSection = document.getElementById("carrinhoVazio");
+
+    carregarCarrinho(); // Chama a função para carregar o carrinho
+
+    if (modalConfirmarRemocaoEl) { // Garante que o modal de remoção exista
+        listaCarrinhoBody.addEventListener('click', function (event) {
+            const removeButton = event.target.closest('.btn-remover');
+            if (removeButton) {
+                const productId = removeButton.getAttribute('data-id');
+                modalConfirmarRemocaoEl.setAttribute('data-product-id-to-remove', productId);
+            }
+        });
+    }
+
+    // Listener para o botão "Sim, Remover" dentro do modal de confirmação
+    if (btnConfirmarRemocao && modalConfirmarRemocaoEl) {
+        btnConfirmarRemocao.addEventListener('click', function () {
+            const modalInstance = bootstrap.Modal.getInstance(modalConfirmarRemocaoEl);
+            const productIdToRemove = modalConfirmarRemocaoEl.getAttribute('data-product-id-to-remove');
+
+            if (productIdToRemove !== null) {
+                excluirProduto(productIdToRemove);
+                if (modalInstance) modalInstance.hide();
+            } else {
+                console.warn("Nenhum ID de produto para remover foi encontrado no modal de confirmação.");
+                if (modalInstance) modalInstance.hide();
+            }
+        });
+    }
+
+    // --- Lógica de Adicionar Produto (se o modal existir nesta página) ---
+    // Estes listeners só devem ser adicionados se o modal de adicionar produto estiver presente
+    if (modalAdicionarProdutoEl && inputCodigoProduto) {
+        // Delegação de Eventos para o Teclado Virtual
+        if (tecladoVirtualContainer) {
+            tecladoVirtualContainer.addEventListener('click', function (event) {
+                const targetButton = event.target.closest('button');
+                if (!targetButton) return;
+
+                if (targetButton.classList.contains('btn-numero')) {
+                    const numero = targetButton.getAttribute("data-numero");
+                    inputCodigoProduto.value += numero;
+                } else if (targetButton.id === 'btnBackspace') {
+                    inputCodigoProduto.value = inputCodigoProduto.value.slice(0, -1);
                 }
             });
         }
 
-        // Listener para o botão "Sim, Remover" dentro do modal de confirmação
-        if (btnConfirmarRemocao && modalConfirmarRemocaoEl) {
-            btnConfirmarRemocao.addEventListener('click', function () {
-                const modalInstance = bootstrap.Modal.getInstance(modalConfirmarRemocaoEl);
-                const productIdToRemove = modalConfirmarRemocaoEl.getAttribute('data-product-id-to-remove');
-
-                if (productIdToRemove !== null) {
-                    excluirProduto(productIdToRemove);
-                    if (modalInstance) modalInstance.hide();
-                } else {
-                    console.warn("Nenhum ID de produto para remover foi encontrado no modal de confirmação.");
-                    if (modalInstance) modalInstance.hide();
-                }
-            });
+        // Listener para o botão "Adicionar" DENTRO DO MODAL
+        if (btnAdicionarNoModal) {
+            btnAdicionarNoModal.addEventListener('click', () => adicionarProduto(inputCodigoProduto));
         }
 
-        // --- Lógica de Adicionar Produto (se o modal existir nesta página) ---
-        // Estes listeners só devem ser adicionados se o modal de adicionar produto estiver presente
-        if (modalAdicionarProdutoEl && inputCodigoProduto) {
-            // Delegação de Eventos para o Teclado Virtual
-            if (tecladoVirtualContainer) {
-                tecladoVirtualContainer.addEventListener('click', function(event) {
-                    const targetButton = event.target.closest('button');
-                    if (!targetButton) return;
+        // Lógica para o modal de adicionar produto: limpar e focar campo ao abrir
+        modalAdicionarProdutoEl.addEventListener('shown.bs.modal', function () {
+            inputCodigoProduto.value = "";
+            inputCodigoProduto.focus();
+        });
+    }
 
-                    if (targetButton.classList.contains('btn-numero')) {
-                        const numero = targetButton.getAttribute("data-numero");
-                        inputCodigoProduto.value += numero;
-                    } else if (targetButton.id === 'btnBackspace') {
-                        inputCodigoProduto.value = inputCodigoProduto.value.slice(0, -1);
-                    }
-                });
-            }
-
-            // Listener para o botão "Adicionar" DENTRO DO MODAL
-            if (btnAdicionarNoModal) {
-                btnAdicionarNoModal.addEventListener('click', adicionarProduto);
-            }
-
-            // Lógica para o modal de adicionar produto: limpar e focar campo ao abrir
-            modalAdicionarProdutoEl.addEventListener('shown.bs.modal', function () {
-                inputCodigoProduto.value = "";
-                inputCodigoProduto.focus();
-            });
-        }
 });
