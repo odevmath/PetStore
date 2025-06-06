@@ -24,3 +24,8 @@ html, body {
     outline: none !important;
     border-color: #ced4da !important;
 }
+
+.tabela-scroll {
+    max-height: 280px; /* até 4 linhas visíveis na tabela */
+    overflow-y: auto;
+}

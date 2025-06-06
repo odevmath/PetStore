@@ -9,7 +9,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const toastProdutoRemovidoEl = document.getElementById('toastProdutoRemovido');
     const modalConfirmarRemocaoEl = document.getElementById('modalConfirmarRemocao'); // Referência ao modal de confirmação de remoção
     const btnConfirmarRemocao = document.getElementById('btnConfirmarRemocao');
-
+    const toastErroEl = document.getElementById('toastErro');
+    const toastErroMsg = document.getElementById('toastErroMsg');
 
     // Inicialização dos Toasts Bootstrap
     let toastAdicionado;
@@ -20,6 +21,11 @@ document.addEventListener("DOMContentLoaded", function () {
     let toastRemovido;
     if (toastProdutoRemovidoEl) {
         toastRemovido = new bootstrap.Toast(toastProdutoRemovidoEl, { delay: 3000 });
+    }
+
+    let toastErro;
+    if (toastErroEl) {
+    toastErro = new bootstrap.Toast(toastErroEl, { delay: 3000 });
     }
 
     // ====================================================================================================================
@@ -60,6 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     produtos.forEach((produto, index) => {
                         const tr = document.createElement("tr");
                         tr.innerHTML = `
+                            <td>${index + 1}</td> <!-- Coluna de numeração -->
                             <td>${produto.nome}</td>
                             <td>R$ ${produto.preco.toFixed(2).replace('.', ',')}</td>
                             <td>
@@ -72,9 +79,13 @@ document.addEventListener("DOMContentLoaded", function () {
                         tbody.appendChild(tr);
 
                         total += produto.preco;
-                        localStorage.setItem('valorTotalCarrinho', total.toFixed(2)); /**/
-
                     });
+
+                    // Após preencher tudo, rola automaticamente para o final da tabela
+                    const scrollContainer = document.querySelector('.tabela-scroll');
+                    if (scrollContainer) {
+                        scrollContainer.scrollTop = scrollContainer.scrollHeight;
+                    }
 
                     document.getElementById('valorTotalCarrinho').innerText = `R$ ${total.toFixed(2).replace('.', ',')}`;
                 }
@@ -85,14 +96,25 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     }
 
+    function mostrarToastErro(mensagem) {
+    if (!toastErro || !toastErroMsg) {
+        alert(mensagem); // fallback para alert se toast não existir
+        return;
+    }
+    
+    toastErroMsg.textContent = mensagem;
+    toastErro.show();
+    }
+
     // Adiciona um produto ao carrinho
     function adicionarProduto() {
         const codigoDigitado = inputCodigoProduto ? inputCodigoProduto.value.trim() : '';
 
         if (!codigoDigitado) {
-            alert('Por favor, digite o código do produto.');
+            mostrarToastErro('Por favor, digite o código do produto.');
             return;
         }
+
 
         fetch('http://localhost:3000/produtos')
             .then(res => {
@@ -106,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 const produto = produtos.find(p => p.codigo === codigoDigitado);
 
                 if (!produto) {
-                    alert('Código inválido. Tente um dos produtos disponíveis.');
+                    mostrarToastErro('Código inválido. Tente um dos produtos disponíveis.');
                     return;
                 }
 
@@ -176,7 +198,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const listaCarrinhoBody = document.getElementById('listaCarrinho'); // Elemento que só existe no carrinho.html
     const carrinhoVazioSection = document.getElementById("carrinhoVazio"); // Outro elemento que só existe no carrinho.html
 
-    /*if (listaCarrinhoBody && carrinhoVazioSection) { // Se estamos no carrinho.html*/
         carregarCarrinho(); // Chama a função para carregar o carrinho
 
         // Adiciona listener para os botões de remover produtos (usando delegação de eventos na tbody)
@@ -235,6 +256,4 @@ document.addEventListener("DOMContentLoaded", function () {
                 inputCodigoProduto.focus();
             });
         }
-    /*}*/
-
 });
