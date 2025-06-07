@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const toastProdutoRemovidoEl = document.getElementById('toastProdutoRemovido');
     const toastErroEl = document.getElementById('toastErro');
     const toastErroMsg = document.getElementById('toastErroMsg');
-    
+
 
     // ======================================================================================
     //  Inicialização dos Toasts Bootstrap
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
         toastErroMsg.textContent = mensagem;
         toastErro.show();
     }
-    
+
     // ====================================================================================================================
     //  Funções do Carrinho
     // ====================================================================================================================
@@ -195,7 +195,6 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     }
 
-
     // ====================================================================================================================
     //  Chamada de Inicialização e Event Listeners
     // ====================================================================================================================
@@ -203,7 +202,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Leitura do Código de Barras e Adição do Produto
     if (pgCarrinho) {
-        /* const inputCodigoBarras = document.getElementById("inputCodigoBarras"); */
+        console.log('adicionar')
         inputCodigoBarras.focus(); //foco automático no input
 
         pgCarrinho.addEventListener('click', () => {
@@ -231,7 +230,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
-    
+
     // Botão para confirmar exclusão
     if (btnConfirmarRemocao && modalConfirmarRemocaoEl) {
         btnConfirmarRemocao.addEventListener('click', function () {
@@ -250,7 +249,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Adicionar Produto pela modal
     if (modalAdicionarProdutoEl && inputCodigoProduto) {
-        // Delegação de Eventos para o Teclado Virtual
+        // Delegação de Eventos para o Teclado 
+
+        // Limpar e focar input ao abrir
+        modalAdicionarProdutoEl.addEventListener('show.bs.modal', function () {
+            inputCodigoProduto.value = "";
+            inputCodigoProduto.focus();
+        });
+
         if (tecladoVirtualContainer) {
             tecladoVirtualContainer.addEventListener('click', function (event) {
                 const targetButton = event.target.closest('button');
@@ -269,12 +275,16 @@ document.addEventListener("DOMContentLoaded", function () {
         if (btnAdicionarNoModal) {
             btnAdicionarNoModal.addEventListener('click', () => adicionarProduto(inputCodigoProduto));
         }
-
-        // Limpar e focar input ao abrir
-        modalAdicionarProdutoEl.addEventListener('shown.bs.modal', function () {
-            inputCodigoProduto.value = "";
-            inputCodigoProduto.focus();
-        });
     }
+
+    // Lógica para quando fechar alguma modal o foco volte para o código de barras
+    document.querySelectorAll('.modal').forEach(modalEl => {
+        modalEl.addEventListener('hidden.bs.modal', function () {
+            setTimeout(() => {
+                document.activeElement.blur();
+                inputCodigoBarras.focus();
+            }, 50);
+        });
+    });
 
 });
