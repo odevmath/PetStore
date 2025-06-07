@@ -207,7 +207,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         pgCarrinho.addEventListener('click', () => {
             inputCodigoBarras.focus();
-        }); //garante que vai ficar com o foco
+        }); //garante que vai ficar com o foco mesmo clicando na tela
 
         inputCodigoBarras.addEventListener('keydown', function (event) {
             if (event.key === 'Enter') {
@@ -220,38 +220,19 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Modal de confirmação da exclusão do produto
-    if (modalConfirmarRemocaoEl) { // Garante que o modal de remoção exista
-        listaCarrinhoBody.addEventListener('click', function (event) {
-            const removeButton = event.target.closest('.btn-remover');
-            if (removeButton) {
-                const productId = removeButton.getAttribute('data-id');
-                modalConfirmarRemocaoEl.setAttribute('data-product-id-to-remove', productId);
-            }
+    // Lógica para quando fechar alguma modal o foco volte para o código de barras
+    document.querySelectorAll('.modal').forEach(modalEl => {
+        modalEl.addEventListener('hidden.bs.modal', function () {
+            setTimeout(() => {
+                document.activeElement.blur();
+                inputCodigoBarras.focus();
+            }, 50);
         });
-    }
-
-    // Botão para confirmar exclusão
-    if (btnConfirmarRemocao && modalConfirmarRemocaoEl) {
-        btnConfirmarRemocao.addEventListener('click', function () {
-            const modalInstance = bootstrap.Modal.getInstance(modalConfirmarRemocaoEl);
-            const productIdToRemove = modalConfirmarRemocaoEl.getAttribute('data-product-id-to-remove');
-
-            if (productIdToRemove !== null) {
-                excluirProduto(productIdToRemove);
-                if (modalInstance) modalInstance.hide();
-            } else {
-                console.warn("Nenhum ID de produto para remover foi encontrado no modal de confirmação.");
-                if (modalInstance) modalInstance.hide();
-            }
-        });
-    }
+    });
 
     // Adicionar Produto pela modal
     if (modalAdicionarProdutoEl && inputCodigoProduto) {
-        // Delegação de Eventos para o Teclado 
-
-        // Limpar e focar input ao abrir
+        // Limpar e focar input da modal ao abrir
         modalAdicionarProdutoEl.addEventListener('show.bs.modal', function () {
             inputCodigoProduto.value = "";
             inputCodigoProduto.focus();
@@ -277,14 +258,31 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Lógica para quando fechar alguma modal o foco volte para o código de barras
-    document.querySelectorAll('.modal').forEach(modalEl => {
-        modalEl.addEventListener('hidden.bs.modal', function () {
-            setTimeout(() => {
-                document.activeElement.blur();
-                inputCodigoBarras.focus();
-            }, 50);
+    // Modal de confirmação da exclusão do produto
+    if (modalConfirmarRemocaoEl) { // Garante que o modal de remoção exista
+        listaCarrinhoBody.addEventListener('click', function (event) {
+            const removeButton = event.target.closest('.btn-remover');
+            if (removeButton) {
+                const productId = removeButton.getAttribute('data-id');
+                modalConfirmarRemocaoEl.setAttribute('data-product-id-to-remove', productId);
+            }
         });
-    });
+    }
+
+    // Botão para confirmar exclusão - que esta dentro da modal
+    if (btnConfirmarRemocao && modalConfirmarRemocaoEl) {
+        btnConfirmarRemocao.addEventListener('click', function () {
+            const modalInstance = bootstrap.Modal.getInstance(modalConfirmarRemocaoEl);
+            const productIdToRemove = modalConfirmarRemocaoEl.getAttribute('data-product-id-to-remove');
+
+            if (productIdToRemove !== null) {
+                excluirProduto(productIdToRemove);
+                if (modalInstance) modalInstance.hide();
+            } else {
+                console.warn("Nenhum ID de produto para remover foi encontrado no modal de confirmação.");
+                if (modalInstance) modalInstance.hide();
+            }
+        });
+    }
 
 });
