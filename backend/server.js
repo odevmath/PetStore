@@ -43,7 +43,7 @@ app.get('/carrinho', (req, res) => {
 });
 
 // Remove um produto específico do carrinho pelo seu índice (posição no array)
-app.delete('/carrinho/:indice', (req, res) => { // <-- CORREÇÃO AQUI: adicionado '/' no início e nome do parâmetro para ':indice'
+app.delete('/carrinho/:indice', (req, res) => {
     const indice = parseInt(req.params.indice); // <-- Usando 'indice' para consistência
 
     // Verifica se o índice é válido
@@ -53,7 +53,7 @@ app.delete('/carrinho/:indice', (req, res) => { // <-- CORREÇÃO AQUI: adiciona
 
     carrinho.splice(indice, 1); // Remove o produto do carrinho a partir do índice especificado
     res.json({ mensagem: 'Produto removido do carrinho.' });
-}); // <-- CORREÇÃO AQUI: fechamento correto da função app.delete
+});
 
 // Limpa carrinho
 app.delete('/carrinho', (req, res) => {
