@@ -35,14 +35,12 @@ PetStore/
 │   └── fonts/
 ├── backend/
 │   ├── data/
-│   ├── node_modules/
 │   ├── .gitignore
 │   ├── package.json
 │   ├── package-lock.json
 │   └── server.js
 ├── pages/
 │   ├── carrinho.html
-│   ├── carrinho(standBy).html
 │   ├── conclusao.html
 │   ├── cpf.html
 │   ├── pagamento.html
@@ -56,8 +54,6 @@ PetStore/
 │   ├── processando.js
 │   └── ticket.js
 ├── script.js
-├── script(standBy).js
-├── script(standBy2).js
 ├── styles.css
 ├── README.md
 └── .gitignore
