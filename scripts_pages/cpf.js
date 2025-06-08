@@ -8,6 +8,26 @@ document.addEventListener("DOMContentLoaded", function () {
     const tecladoVirtualContainer = modalAdicionarCpf ? modalAdicionarCpf.querySelector('.modal-body .d-grid.gap-2') : null;
     const btnAdicionarNoModal = modalAdicionarCpf ? modalAdicionarCpf.querySelector('#btnAdicionarCpf') : null;
 
+    // Função para validar cpf
+    function validarCPF(cpf) {
+        cpf = cpf.replace(/\D/g, '');
+
+        if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) return false;
+
+        let soma = 0;
+        for (let i = 0; i < 9; i++) {
+            soma += parseInt(cpf.charAt(i)) * (10 - i);
+        }
+        let digito1 = soma % 11 < 2 ? 0 : 11 - (soma % 11);
+
+        soma = 0;
+        for (let i = 0; i < 10; i++) {
+            soma += parseInt(cpf.charAt(i)) * (11 - i);
+        }
+        let digito2 = soma % 11 < 2 ? 0 : 11 - (soma % 11);
+
+        return digito1 === parseInt(cpf.charAt(9)) && digito2 === parseInt(cpf.charAt(10));
+    }
 
     // ====================================================================================================================
     //  Event Listeners
@@ -36,9 +56,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Listener para o botão "Incluir", navegação para próxima tela
         if (btnAdicionarNoModal) {
-            btnAdicionarNoModal.addEventListener('click', function (event) {
+            btnAdicionarNoModal.addEventListener('click', function () {
+                const cpf = inputCpf.value;
+
+                if (!validarCPF(cpf)) {
+                    const toast = new bootstrap.Toast(document.getElementById('toastCpfInvalido'));
+                    toast.show();
+                    return;
+                }
+
+                // Redireciona se o CPF for válido
                 window.location.href = "processando.html";
             });
+
         }
 
         // Limpar e focar input ao abrir
